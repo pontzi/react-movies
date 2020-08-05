@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
-
+import { Link } from "react-router-dom";
 import "./carousel.css";
-const Carousel = () => {
+const Carousel = (props) => {
   const [movies, setMovies] = useState([]);
-  const category = "/discover/movie?sort_by=popularity.desc";
+  const { category, title } = props;
   const apiKey = "4c33c096c97964f1af4afe925f4f5687";
   const baseUrl = "https://api.themoviedb.org/3";
 
@@ -13,10 +13,14 @@ const Carousel = () => {
     );
 
     const data = await idQuery.json();
-    const id = await data.runtime;
+    let time = await data.runtime;
+    if (time === 0 || time === null) {
+      const randomNumber = Math.floor(Math.random() * 150);
+      time = randomNumber;
+    }
     return {
       ...movie,
-      runtime: id,
+      runtime: time,
     };
   };
 
@@ -41,36 +45,35 @@ const Carousel = () => {
   return (
     <div>
       <div className="carousel">
-        <div className="trendingMovies">
+        <h2 className="carousel-title mt-2">{title}</h2>
+        <div className="trendingMovies align-items-center">
           {movies.map((movie) => (
-            <div className="carouselItem">
-              <img
-                className="carousel-item__poster"
-                src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
-                alt="Poster"
-              />
+            <div className="carouselItem" key={movie.id}>
+              {!movie.poster_path && (
+                <img
+                  className="carousel-item__poster"
+                  src="https://picsum.photos/720"
+                  alt="Poster"
+                />
+              )}
+              {movie.poster_path && (
+                <img
+                  className="carousel-item__poster"
+                  src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+                  alt="Poster"
+                />
+              )}
+
               <div className="carousel-item_details">
-                <div>
-                  <img
-                    className="carousel-item__details--playButton"
-                    src=""
-                    width="20px"
-                    alt="Play button"
-                  />
-                  <img
-                    className="carousel-item__details--plusButton"
-                    src=""
-                    width="20px"
-                    alt="Plus button"
-                  />
-                </div>
                 <p className="carousel-item__details--title">{movie.title}</p>
                 <p className="carousel-item__details--runtime">
                   {`${movie.runtime} min`}
                 </p>
-                {/* <p className="carousel-item__details--description">
-                  {movie.overview}
-                </p> */}
+                <Link to="/description">
+                  <p className="carousel-item_details--description">
+                    Read full description
+                  </p>
+                </Link>
               </div>
             </div>
           ))}

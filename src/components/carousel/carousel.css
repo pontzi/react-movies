@@ -1,29 +1,92 @@
+* {
+  margin: 0;
+  padding: 0;
+  font-family: "Poppins", sans-serif; }
+
+::-webkit-scrollbar {
+  background: black;
+  border-radius: 10px;
+  height: 5px; }
+
+::-webkit-scrollbar-thumb {
+  background: white;
+  border-radius: 10px;
+  height: 5px; }
+
 .trendingMovies {
   overflow: scroll;
   display: flex;
   flex-wrap: nowrap;
-}
+  height: 300px;
+  overflow-y: hidden; }
+
+.carousel-title {
+  color: white;
+  font-weight: bolder;
+  margin-left: 15px; }
+
 .carouselItem {
   width: 250px;
-
-  margin-right: 10px;
+  height: 250px;
+  margin-right: 20px;
   position: relative;
-}
+  border-radius: 20px;
+  transition: 450ms;
+  cursor: pointer; }
+  .carouselItem:first-child {
+    margin-left: 15px; }
+
+.carouselItem:hover ~ .carouselItem {
+  transform: translate3d(100px, 0px, 0px);
+  transition: 450ms; }
+
+.trendingMovies:hover .carouselItem {
+  opacity: 0.5; }
+
+.trendingMovies:hover .carouselItem:hover {
+  transform: scale(1.1);
+  opacity: 1;
+  transition: 200ms; }
+
 .carousel-item__poster {
   width: 250px;
   height: 250px;
   object-fit: cover;
-  border-radius: 20px;
-}
+  border-radius: 20px; }
+
 .carousel-item_details {
   color: white;
-  background: linear-gradient(to top, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0));
-  opacity: 0.65;
-  transition: 2000ms opacity;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0));
+  width: 100%;
   padding: 10px;
   position: absolute;
-  top: 160px;
-  left: 0;
-  right: 0;
   bottom: 0;
-}
+  opacity: 0.65;
+  transition: 2000ms opacity;
+  border-radius: 20px; }
+
+.carousel-item_details p {
+  margin-bottom: 0; }
+
+.carouselItem:hover .carousel-item_details {
+  opacity: 1; }
+
+.carousel-item_details--description {
+  color: white; }
+
+.carousel-item__details--title {
+  font-weight: bolder;
+  font-size: 20px; }
+  .carousel-item__details--title:hover {
+    text-decoration: underline;
+    transform: scale(1.02);
+    transition: 200ms; }
+
+.carousel-item_details--description:hover {
+  text-decoration: underline;
+  color: white; }
+
+.carousel-item__details--runtime:hover {
+  text-decoration: underline; }
+
+/*# sourceMappingURL=carousel.css.map */

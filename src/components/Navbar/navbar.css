@@ -1,0 +1,37 @@
+.navbar {
+  background-color: black;
+  height: 60px; }
+
+.navbarRight a {
+  text-decoration: none;
+  color: white;
+  transition: 1000ms; }
+  .navbarRight a:hover {
+    text-decoration: none;
+    transition: 400ms;
+    color: #bfbfbf; }
+  .navbarRight a p {
+    margin: 0;
+    padding: 0;
+    align-self: center; }
+
+.navbarLeft a {
+  text-decoration: none;
+  color: white;
+  transition: 1000ms; }
+  .navbarLeft a:hover {
+    text-decoration: none;
+    transition: 400ms;
+    color: #bfbfbf; }
+  .navbarLeft a p {
+    margin: 0;
+    padding: 0;
+    align-self: center; }
+
+.inputNavbar {
+  border-radius: 10px;
+  padding: 5px;
+  outline: none;
+  border: none; }
+
+/*# sourceMappingURL=navbar.css.map */
