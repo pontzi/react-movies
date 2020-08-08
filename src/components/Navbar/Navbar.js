@@ -1,32 +1,86 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import search from "./search.png";
+import logo from "./logo.png";
 import "./navbar.css";
+
 const Navbar = () => {
+  const [state, setState] = useState({
+    background: null,
+    search: null,
+  });
+
+  window.onscroll = function () {
+    onHandleScroll();
+  };
+
+  function onHandleScroll() {
+    if (
+      document.body.scrollTop > 50 ||
+      document.documentElement.scrollTop > 50
+    ) {
+      setState({
+        ...state,
+        background: "navBackground",
+      });
+    } else {
+      setState({
+        ...state,
+        background: "",
+      });
+    }
+  }
+  const onHandleClick = () => {
+    setState({
+      ...state,
+      search: true,
+    });
+  };
+  const onHandleFocusOut = () => {
+    console.log("outt");
+    setState({
+      ...state,
+      search: null,
+    });
+  };
   return (
-    <div className="navbar d-flex justify-content-between align-items-center">
-      <div className="navbarLeft d-flex align-items-center">
+    <div
+      className={`navbar d-flex flex-nowrap justify-content-between align-items-center position-fixed w-100 ${state.background}`}
+    >
+      <div className="navbarLeft d-flex align-items-center ">
         <Link to="/">
-          <p className="mr-2">Most popular</p>
+          <img src={logo} className="logo" alt="Logo" />
         </Link>
         <Link to="/">
-          <p className="mr-2">Highest rated</p>
+          <p className="navbarItem mr-2">Most popular</p>
         </Link>
         <Link to="/">
-          <p className="mr-2">Best drama's</p>
-        </Link>
-        <Link to="/">
-          <p>My list</p>
+          <p className="navbarItem mr-2">Highest rated</p>
         </Link>
       </div>
       <div className="navbarRight d-flex align-items-center">
-        <input
-          className="mr-2 inputNavbar"
-          placeholder="Search a movie"
-          type="text"
-        />
+        {state.search === null && (
+          <img
+            onClick={onHandleClick}
+            className="search"
+            src={search}
+            alt="search"
+          />
+        )}
+        {state.search && (
+          <div className="inputContainer">
+            <input
+              className="navbarInput"
+              type="text"
+              placeholder="Search a movie"
+              autoFocus
+              onBlur={onHandleFocusOut}
+            />
+          </div>
+        )}
 
         <Link to="/">
-          <p>Most popular</p>
+          <p>My list</p>
         </Link>
       </div>
     </div>

@@ -1,12 +1,12 @@
 import React from "react";
 import Navbar from "../Navbar/Navbar";
 import Footer from "../Footer/Footer";
-import Video from "../MainVideo/Video";
+
+import "./layout.css";
 const Layout = (props) => {
   return (
-    <div>
+    <div className="parentContainer">
       <Navbar />
-      <Video />
       {props.children}
       <Footer />
     </div>

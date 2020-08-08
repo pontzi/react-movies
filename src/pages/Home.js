@@ -1,5 +1,6 @@
 import React from "react";
 import Carousel from "../components/carousel/Carousel";
+import Video from "../components/MainVideo/Video";
 import {
   popularMovies,
   kidsMovies,
@@ -10,6 +11,7 @@ import {
 const Home = () => {
   return (
     <div>
+      <Video />
       <Carousel category={popularMovies} title="Popular Movies" />
       <Carousel category={kidsMovies} title="Kids Movies" />
       <Carousel category={oldMovies} title="Old Movies" />

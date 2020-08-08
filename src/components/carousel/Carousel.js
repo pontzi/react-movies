@@ -44,9 +44,9 @@ const Carousel = (props) => {
 
   return (
     <div>
-      <div className="carousel">
+      <div className="carouselContainer">
         <h2 className="carousel-title mt-2">{title}</h2>
-        <div className="trendingMovies align-items-center">
+        <div className="carousel align-items-center">
           {movies.map((movie) => (
             <div className="carouselItem" key={movie.id}>
               {!movie.poster_path && (
