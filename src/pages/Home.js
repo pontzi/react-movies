@@ -37,11 +37,27 @@ const Home = () => {
       transition={pageTransition}
     >
       <Video />
-      <Carousel category={popularMovies} title="Popular Movies" />
-      <Carousel category={kidsMovies} title="Kids Movies" />
-      <Carousel category={oldMovies} title="Old Movies" />
-      <Carousel category={dramaClassics} title="Drama Classics" />
-      <Carousel category={scienceFiction} title="Science Fiction" />
+      <Carousel
+        categoryKey={"popular"}
+        category={popularMovies}
+        title="Popular Movies"
+      />
+      <Carousel
+        categoryKey={"kids"}
+        category={kidsMovies}
+        title="Kids Movies"
+      />
+      <Carousel categoryKey={"old"} category={oldMovies} title="Old Movies" />
+      <Carousel
+        categoryKey={"drama"}
+        category={dramaClassics}
+        title="Drama Classics"
+      />
+      <Carousel
+        categoryKey={"fiction"}
+        category={scienceFiction}
+        title="Science Fiction"
+      />
     </motion.div>
   );
 };

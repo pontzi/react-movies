@@ -1,54 +1,40 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { Link } from "react-router-dom";
+import { MoviesContext } from "../../context/MoviesProvider";
+import Loader from "../Loader/Loader";
 import "./carousel.css";
+
 const Carousel = (props) => {
-  const [movies, setMovies] = useState([]);
+  const { movies } = useContext(MoviesContext);
+  const { categoryKey, title } = props;
 
-  const { category, title } = props;
-  const apiKey = "4c33c096c97964f1af4afe925f4f5687";
-  const baseUrl = "https://api.themoviedb.org/3";
-
-  const getFinalData = async (movie, apiKey) => {
-    const idQuery = await fetch(
-      `https://api.themoviedb.org/3/movie/${movie.id}?api_key=${apiKey}`
-    );
-
-    const data = await idQuery.json();
-    let time = await data.runtime;
-    if (time === 0 || time === null) {
-      const randomNumber = Math.floor(Math.random() * 150);
-      time = randomNumber;
+  const assignCategory = () => {
+    switch (categoryKey) {
+      case "popular":
+        return movies.popular;
+      case "drama":
+        return movies.drama;
+      case "old":
+        return movies.old;
+      case "fiction":
+        return movies.fiction;
+      case "kids":
+        return movies.kids;
+      default:
+        break;
     }
-    return {
-      ...movie,
-      runtime: time,
-    };
   };
-
-  const getData = async (category) => {
-    const query = await fetch(`${baseUrl}${category}&api_key=${apiKey}`);
-
-    const { results } = await query.json();
-
-    const promiseFinalDataArray = results.map((movie) =>
-      getFinalData(movie, apiKey)
-    );
-
-    const finalData = await Promise.all(promiseFinalDataArray);
-
-    setMovies(finalData);
-  };
-
-  useEffect(() => {
-    getData(category);
-  }, []);
+  const categoryData = assignCategory();
+  if (!categoryData) {
+    return <Loader />;
+  }
 
   return (
     <div>
       <div className="carouselContainer">
         <h2 className="carousel-title mt-2">{title}</h2>
         <div className="carousel align-items-center">
-          {movies.map((movie) => (
+          {categoryData.map((movie) => (
             <div className="carouselItem" key={movie.id}>
               {!movie.poster_path && (
                 <img
