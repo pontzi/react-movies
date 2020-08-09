@@ -1,28 +1,38 @@
-*
-  margin: 0
-  padding: 0
-  font-family: 'Poppins', sans-serif
-// body::-webkit-scrollbar-thumb
-//   background: rgba(0,0,0,0.7)
-//   border-radius: 25px
-::-webkit-scrollbar
+body::-webkit-scrollbar
+  background: black
+  border-radius: 10px
+  width: 5px
+
+body::-webkit-scrollbar-thumb
+  background: white
+  border-radius: 10px
+  
+
+.carousel::-webkit-scrollbar 
   background: black
   border-radius: 10px
   height: 5px
-::-webkit-scrollbar-thumb
+    
+.carousel::-webkit-scrollbar-thumb 
   background: white
   border-radius: 10px
   height: 5px
-.trendingMovies 
+
+
+.carousel 
   overflow: scroll
   display: flex
   flex-wrap: nowrap
   height: 300px
   overflow-y: hidden
-.carousel-title
+  margin-left: 43px
+
+.carousel-title 
   color: white
   font-weight: bolder
-  margin-left: 15px
+  margin-left: 60px
+
+
 .carouselItem 
   width: 250px
   height: 250px
@@ -31,25 +41,32 @@
   border-radius: 20px
   transition: 450ms
   cursor: pointer
-  &:first-child
-    margin-left: 15px
+
+.carouselItem:first-child 
+  margin-left: 15px
+
 
 .carouselItem:hover ~ .carouselItem 
   transform: translate3d(100px, 0px, 0px)
   transition: 450ms
 
-.trendingMovies:hover .carouselItem 
+
+.carousel:hover .carouselItem 
   opacity: 0.5
 
-.trendingMovies:hover .carouselItem:hover 
+
+.carousel:hover .carouselItem:hover 
   transform: scale(1.1)
   opacity: 1
   transition: 200ms
+
+
 .carousel-item__poster 
   width: 250px
   height: 250px
   object-fit: cover
   border-radius: 20px
+
 
 .carousel-item_details 
   color: white
@@ -62,25 +79,39 @@
   transition: 2000ms opacity
   border-radius: 20px
 
-.carousel-item_details 
-  p 
-    margin-bottom: 0
+
+.carousel-item_details p 
+  margin-bottom: 0
+
 
 .carouselItem:hover .carousel-item_details 
   opacity: 1
 
+
 .carousel-item_details--description 
   color: white
+
 
 .carousel-item__details--title 
   font-weight: bolder
   font-size: 20px
-  &:hover
-    text-decoration: underline
-    transform: scale(1.02)
-    transition: 200ms
+
+.carousel-item__details--title:hover 
+  text-decoration: underline
+  transform: scale(1.02)
+  transition: 200ms
+
+
 .carousel-item_details--description:hover 
   text-decoration: underline
   color: white
-.carousel-item__details--runtime:hover
+
+
+.carousel-item__details--runtime:hover 
   text-decoration: underline
+
+@media only screen and (max-width: 768px) 
+  .carousel
+    margin-left: 0px
+
+/*# sourceMappingURL=carousel.css.map */

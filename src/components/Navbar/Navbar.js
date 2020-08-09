@@ -45,7 +45,7 @@ const Navbar = () => {
   };
   return (
     <div
-      className={`navbar d-flex flex-nowrap justify-content-between align-items-center position-fixed w-100 ${state.background}`}
+      className={`navbar d-flex flex-wrap justify-content-between align-items-center position-fixed sticky-top w-100 ${state.background}`}
     >
       <div className="navbarLeft d-flex align-items-center ">
         <Link to="/">

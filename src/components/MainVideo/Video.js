@@ -20,6 +20,9 @@ const Video = () => {
       }
     });
     observer.observe(vid.current);
+    return () => {
+      observer.disconnect();
+    };
   }, []);
 
   //-------------------------------------------------------

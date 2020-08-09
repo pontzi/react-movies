@@ -1,14 +1,21 @@
-::-webkit-scrollbar {
+body::-webkit-scrollbar {
   background: black;
   border-radius: 10px;
-  height: 5px;
-}
+  width: 5px; }
 
-::-webkit-scrollbar-thumb {
+body::-webkit-scrollbar-thumb {
+  background: white;
+  border-radius: 10px; }
+
+.carousel::-webkit-scrollbar {
+  background: black;
+  border-radius: 10px;
+  height: 5px; }
+
+.carousel::-webkit-scrollbar-thumb {
   background: white;
   border-radius: 10px;
-  height: 5px;
-}
+  height: 5px; }
 
 .carousel {
   overflow: scroll;
@@ -16,14 +23,12 @@
   flex-wrap: nowrap;
   height: 300px;
   overflow-y: hidden;
-  margin-left: 43px;
-}
+  margin-left: 43px; }
 
 .carousel-title {
   color: white;
   font-weight: bolder;
-  margin-left: 60px;
-}
+  margin-left: 60px; }
 
 .carouselItem {
   width: 250px;
@@ -32,33 +37,28 @@
   position: relative;
   border-radius: 20px;
   transition: 450ms;
-  cursor: pointer;
-}
+  cursor: pointer; }
+
 .carouselItem:first-child {
-  margin-left: 15px;
-}
+  margin-left: 15px; }
 
 .carouselItem:hover ~ .carouselItem {
   transform: translate3d(100px, 0px, 0px);
-  transition: 450ms;
-}
+  transition: 450ms; }
 
 .carousel:hover .carouselItem {
-  opacity: 0.5;
-}
+  opacity: 0.5; }
 
 .carousel:hover .carouselItem:hover {
   transform: scale(1.1);
   opacity: 1;
-  transition: 200ms;
-}
+  transition: 200ms; }
 
 .carousel-item__poster {
   width: 250px;
   height: 250px;
   object-fit: cover;
-  border-radius: 20px;
-}
+  border-radius: 20px; }
 
 .carousel-item_details {
   color: white;
@@ -69,38 +69,36 @@
   bottom: 0;
   opacity: 0.65;
   transition: 2000ms opacity;
-  border-radius: 20px;
-}
+  border-radius: 20px; }
 
 .carousel-item_details p {
-  margin-bottom: 0;
-}
+  margin-bottom: 0; }
 
 .carouselItem:hover .carousel-item_details {
-  opacity: 1;
-}
+  opacity: 1; }
 
 .carousel-item_details--description {
-  color: white;
-}
+  color: white; }
 
 .carousel-item__details--title {
   font-weight: bolder;
-  font-size: 20px;
-}
+  font-size: 20px; }
+
 .carousel-item__details--title:hover {
   text-decoration: underline;
   transform: scale(1.02);
-  transition: 200ms;
-}
+  transition: 200ms; }
 
 .carousel-item_details--description:hover {
   text-decoration: underline;
-  color: white;
-}
+  color: white; }
 
 .carousel-item__details--runtime:hover {
-  text-decoration: underline;
-}
+  text-decoration: underline; }
+
+@media only screen and (max-width: 768px) {
+  .carousel {
+    margin-left: 0px; } }
+/*# sourceMappingURL=carousel.css.map */
 
 /*# sourceMappingURL=carousel.css.map */

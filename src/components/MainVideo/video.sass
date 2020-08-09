@@ -8,7 +8,7 @@
   width: 100%
   object-fit: cover
   min-height: 500px
-  max-height: 800px
+  max-height: 600px
 
 .playPauseButton
   position: absolute
@@ -62,24 +62,37 @@
   margin-bottom: 200px
 .titleContainer
   overflow: hidden
+  &:hover
+    width: auto
 .mainVideoTitle
+  transition: 500ms
   font-family: 'Cinzel', serif
   color: #bf0603
   font-size: 80px
   animation-duration: 3s
   animation-name: slidein
+  cursor: pointer
+  &:hover
+    transition: 500ms
+    transform: scale(1.01)
   &::selection
     color: rgba(240, 52, 52, 1)
 .descriptionContainer
   width: 500px
   overflow: hidden
   height: 100px
+  margin-top: 0px
 .mainVideoDescription
   font-family: 'Cinzel', serif
   color: rgba(255,255,255,0.8)
   font-size: 16px
   animation-duration: 3.5s
   animation-name: slidein
+  cursor: pointer
+  transition: 500ms
+  &:hover
+    transition: 500ms
+    transform: scale(1.01)
   &::selection
     color: rgba(255,255,255,0.5)
 
@@ -92,12 +105,13 @@
     margin-left: 0%
     width: 100%
 
-@media only screen and (max-width: 795px) 
+@media only screen and (max-width: 925px) 
   .mainVideoTitle 
     font-size: 50px
   .mainVideoDescription
     font-size: 14px
-
+  .details
+    margin-bottom: 120px
   
 @media only screen and (max-width: 695px)
   .details
@@ -110,7 +124,6 @@
     height: auto
 @media only screen and (max-width: 465px) 
   .details
-    margin-bottom: 120px
     margin-left: 10px
   .mainVideoTitle
     font-size: 30px
@@ -120,6 +133,6 @@
   .muteUnmute
     margin-right: 10px
     
-@media only screen and (max-width: 225px)
+@media only screen and (max-width: 285px)
   .descriptionContainer
     display: none

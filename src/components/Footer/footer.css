@@ -1,0 +1,9 @@
+.githubIcon {
+  height: 25px;
+  background-color: white;
+  border-radius: 100%;
+  border: 1px solid white;
+}
+footer > p {
+  color: white;
+}

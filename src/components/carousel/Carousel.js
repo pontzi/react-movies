@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import "./carousel.css";
 const Carousel = (props) => {
   const [movies, setMovies] = useState([]);
+
   const { category, title } = props;
   const apiKey = "4c33c096c97964f1af4afe925f4f5687";
   const baseUrl = "https://api.themoviedb.org/3";
@@ -69,7 +70,16 @@ const Carousel = (props) => {
                 <p className="carousel-item__details--runtime">
                   {`${movie.runtime} min`}
                 </p>
-                <Link to="/description">
+                <Link
+                  to={{
+                    pathname: `/description/${movie.id}`,
+                    state: {
+                      ...movie,
+                      poster_path:
+                        movie.poster_path || "https://picsum.photos/720",
+                    },
+                  }}
+                >
                   <p className="carousel-item_details--description">
                     Read full description
                   </p>
