@@ -12,6 +12,7 @@ let { Provider, Consumer } = MoviesContext;
 
 const MoviesProvider = ({ children }) => {
   const [movies, setMovies] = useState({});
+  const [query, setQuery] = useState({});
   const apiKey = "4c33c096c97964f1af4afe925f4f5687";
   const baseUrl = "https://api.themoviedb.org/3";
 
@@ -87,15 +88,19 @@ const MoviesProvider = ({ children }) => {
       drama: finalDramaResults,
       fiction: finalFictionResults,
       allMovies,
-      query: null,
     });
   };
 
-  const setQuery = (e) => {
-    setMovies({
-      ...movies,
-      query: [e.target.value],
-    });
+  const setQueryValue = (e, initialValue) => {
+    if (initialValue === "") {
+      setQuery({
+        query: initialValue,
+      });
+    } else {
+      setQuery({
+        query: e.target.value,
+      });
+    }
   };
 
   useEffect(() => {
@@ -108,7 +113,9 @@ const MoviesProvider = ({ children }) => {
     );
   }, []);
 
-  return <Provider value={{ movies, setQuery }}>{children}</Provider>;
+  return (
+    <Provider value={{ movies, query, setQueryValue }}>{children}</Provider>
+  );
 };
 
 export { MoviesProvider, Consumer, MoviesContext };

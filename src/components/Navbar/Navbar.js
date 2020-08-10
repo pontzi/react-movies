@@ -1,10 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+import { MoviesContext } from "../../context/MoviesProvider";
 import { Link } from "react-router-dom";
 import search from "./search.png";
 import logo from "./logo.png";
 import "./navbar.css";
 
 const Navbar = () => {
+  const { setQueryValue } = useContext(MoviesContext);
   const [state, setState] = useState({
     background: null,
     search: null,
@@ -37,12 +39,12 @@ const Navbar = () => {
     });
   };
   const onHandleFocusOut = () => {
-    console.log("outt");
     setState({
       ...state,
       search: null,
     });
   };
+
   return (
     <div
       className={`navbar d-flex flex-wrap justify-content-between align-items-center position-fixed sticky-top w-100 ${state.background}`}
@@ -75,6 +77,7 @@ const Navbar = () => {
               placeholder="Search a movie"
               autoFocus
               onBlur={onHandleFocusOut}
+              onChange={setQueryValue}
             />
           </div>
         )}
