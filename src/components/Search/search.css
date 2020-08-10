@@ -3,7 +3,11 @@
   align-items: center;
   justify-content: center;
   height: 250px;
+  margin-top: 70px;
 }
 .notFound {
   color: white;
+}
+.searchCarouselContainer {
+  margin-top: 70px;
 }

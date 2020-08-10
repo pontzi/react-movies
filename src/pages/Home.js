@@ -1,9 +1,9 @@
-import React, { useContext, useEffect } from "react";
-import { MoviesContext } from "../context/MoviesProvider";
+import React, { useEffect } from "react";
+
 import { motion } from "framer-motion";
 import Carousel from "../components/carousel/Carousel";
 import Video from "../components/MainVideo/Video";
-import Search from "../components/Search/Search";
+
 import {
   popularMovies,
   kidsMovies,
@@ -13,11 +13,8 @@ import {
 } from "./helpers/categories";
 
 const Home = () => {
-  const { setQueryValue } = useContext(MoviesContext);
-
   useEffect(() => {
     window.scrollTo(0, 0);
-    return () => setQueryValue(null, "");
   }, []);
 
   const pageVariant = {
@@ -43,7 +40,6 @@ const Home = () => {
       transition={pageTransition}
     >
       <Video />
-      <Search />
       <Carousel
         categoryKey={"popular"}
         category={popularMovies}

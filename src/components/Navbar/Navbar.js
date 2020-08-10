@@ -1,12 +1,11 @@
 import React, { useState, useContext } from "react";
-import { MoviesContext } from "../../context/MoviesProvider";
-import { Link } from "react-router-dom";
+
+import { Link, withRouter } from "react-router-dom";
 import search from "./search.png";
 import logo from "./logo.png";
 import "./navbar.css";
 
-const Navbar = () => {
-  const { setQueryValue } = useContext(MoviesContext);
+const Navbar = (props) => {
   const [state, setState] = useState({
     background: null,
     search: null,
@@ -44,6 +43,9 @@ const Navbar = () => {
       search: null,
     });
   };
+  const onHandleChange = (e) => {
+    props.history.push(`/search/${e.target.value}`);
+  };
 
   return (
     <div
@@ -77,7 +79,7 @@ const Navbar = () => {
               placeholder="Search a movie"
               autoFocus
               onBlur={onHandleFocusOut}
-              onChange={setQueryValue}
+              onChange={onHandleChange}
             />
           </div>
         )}
@@ -90,4 +92,4 @@ const Navbar = () => {
   );
 };
 
-export default Navbar;
+export default withRouter(Navbar);

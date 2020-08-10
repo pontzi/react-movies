@@ -5,11 +5,12 @@ import { motion } from "framer-motion";
 import "../carousel/carousel.css";
 import "./search.css";
 
-const Search = () => {
-  const { movies, query } = useContext(MoviesContext);
+const Search = (props) => {
+  const { movies } = useContext(MoviesContext);
   const { allMovies } = movies;
   let moviesData = undefined;
-  const currentQuery = query.query;
+  const currentQuery = props.match.params.searchName;
+
   const pageVariants = {
     in: {
       opacity: 1,
@@ -17,9 +18,6 @@ const Search = () => {
     out: {
       opacity: 0,
     },
-  };
-  const pageTransition = {
-    duration: 1,
   };
 
   if (!allMovies) {
@@ -51,12 +49,11 @@ const Search = () => {
     return (
       <motion.div
         initial="out"
-        animate="in"
+        // animate="in"
         exit="out"
         variants={pageVariants}
-        transition={pageTransition}
       >
-        <div className="carouselContainer">
+        <div className="carouselContainer searchCarouselContainer">
           <h2 className="carousel-title mt-2">Results</h2>
           <div className="carousel align-items-center">
             {moviesWithoutRepeating.map((movie) => (

@@ -1,4 +1,5 @@
 import React, { useRef, useState, useEffect } from "react";
+
 import video from "./joker.mp4";
 import unmute from "./unmute.png";
 import mute from "./mute.png";
@@ -51,7 +52,7 @@ const Video = () => {
   };
   return (
     <PageVisibility onChange={handleVisibilityChange}>
-      <div className="videoContainer">
+      <div className={"videoContainer"}>
         <video ref={vid} className="video" loop autoPlay muted preload="true">
           <source src={video} />
         </video>
