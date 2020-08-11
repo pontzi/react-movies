@@ -1,6 +1,6 @@
-import React, { useState, useContext } from "react";
+import React, { useEffect, useState } from "react";
 
-import { Link, withRouter } from "react-router-dom";
+import { Link, withRouter, Redirect } from "react-router-dom";
 import search from "./search.png";
 import logo from "./logo.png";
 import "./navbar.css";
@@ -9,8 +9,13 @@ const Navbar = (props) => {
   const [state, setState] = useState({
     background: null,
     search: null,
+    value: undefined,
   });
-
+  useEffect(() => {
+    if (state.value === "") {
+      props.history.push("/");
+    }
+  }, [state.value]);
   window.onscroll = function () {
     onHandleScroll();
   };
@@ -44,6 +49,10 @@ const Navbar = (props) => {
     });
   };
   const onHandleChange = (e) => {
+    setState({
+      ...state,
+      value: e.target.value,
+    });
     props.history.push(`/search/${e.target.value}`);
   };
 
@@ -80,6 +89,7 @@ const Navbar = (props) => {
               autoFocus
               onBlur={onHandleFocusOut}
               onChange={onHandleChange}
+              value={state.value}
             />
           </div>
         )}

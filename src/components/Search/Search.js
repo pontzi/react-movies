@@ -1,7 +1,6 @@
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { MoviesContext } from "../../context/MoviesProvider";
-import { motion } from "framer-motion";
 import "../carousel/carousel.css";
 import "./search.css";
 
@@ -10,15 +9,6 @@ const Search = (props) => {
   const { allMovies } = movies;
   let moviesData = undefined;
   const currentQuery = props.match.params.searchName;
-
-  const pageVariants = {
-    in: {
-      opacity: 1,
-    },
-    out: {
-      opacity: 0,
-    },
-  };
 
   if (!allMovies) {
     return <div></div>;
@@ -47,37 +37,33 @@ const Search = (props) => {
     );
 
     return (
-      <motion.div
-        initial="out"
-        // animate="in"
-        exit="out"
-        variants={pageVariants}
-      >
-        <div className="carouselContainer searchCarouselContainer">
-          <h2 className="carousel-title mt-2">Results</h2>
-          <div className="carousel align-items-center">
+      <div>
+        <div className={"searchResultsContainer container"}>
+          <h2 className="searchTitle mt-2">Results</h2>
+          <div className="align-items-center row">
             {moviesWithoutRepeating.map((movie) => (
-              <div className="carouselItem" key={movie.id}>
+              <div
+                className="searchItem mt-4 col-12 col-md-6 col-lg-4 col-xl-3"
+                key={movie.id}
+              >
                 {!movie.poster_path && (
                   <img
-                    className="carousel-item__poster"
+                    className="searchPoster"
                     src="https://picsum.photos/720"
                     alt="Poster"
                   />
                 )}
                 {movie.poster_path && (
                   <img
-                    className="carousel-item__poster"
+                    className="searchPoster"
                     src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
                     alt="Poster"
                   />
                 )}
 
-                <div className="carousel-item_details">
-                  <p className="carousel-item__details--title">{movie.title}</p>
-                  <p className="carousel-item__details--runtime">
-                    {`${movie.runtime} min`}
-                  </p>
+                <div className="searchDetails">
+                  <p className="searchDetails-title">{movie.title}</p>
+                  <p className="searchDetails-runtime">{`${movie.runtime} min`}</p>
                   <Link
                     to={{
                       pathname: `/description/${movie.id}`,
@@ -88,7 +74,7 @@ const Search = (props) => {
                       },
                     }}
                   >
-                    <p className="carousel-item_details--description">
+                    <p className="searchDetails-description">
                       Read full description
                     </p>
                   </Link>
@@ -97,7 +83,7 @@ const Search = (props) => {
             ))}
           </div>
         </div>
-      </motion.div>
+      </div>
     );
   }
   return <div></div>;

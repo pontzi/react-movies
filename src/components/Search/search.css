@@ -2,12 +2,84 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 250px;
+  height: 100vh;
   margin-top: 70px;
 }
 .notFound {
   color: white;
 }
-.searchCarouselContainer {
+.searchResultsContainer {
   margin-top: 70px;
+}
+
+.searchTitle {
+  font-weight: bolder;
+  color: white;
+}
+.searchItem {
+  width: 250px;
+  height: 250px;
+  position: relative;
+  border-radius: 20px;
+  transition: 450ms;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+}
+.searchResultsContainer:hover .searchItem {
+  opacity: 0.5;
+}
+
+.searchResultsContainer:hover .searchItem:hover {
+  transform: scale(1.1);
+  opacity: 1;
+  transition: 200ms;
+}
+.searchDetails {
+  position: absolute;
+  bottom: 0;
+}
+.searchPoster {
+  width: 250px;
+  height: 250px;
+  border-radius: 20px;
+  object-fit: cover;
+  transition: 200m;
+}
+.searchDetails {
+  color: white;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0));
+  width: 250px;
+  position: absolute;
+  bottom: 0;
+  padding: 10px;
+  opacity: 0.65;
+  transition: 2000ms;
+  border-radius: 20px;
+}
+.searchDetails p {
+  margin-bottom: 0px;
+}
+.searchDetails-title {
+  font-weight: bolder;
+  font-size: 20px;
+}
+.searchDetails-title:hover {
+  text-decoration: underline;
+  transform: scale(1.02);
+  transition: 200ms;
+}
+.searchItem:hover .searchDetails {
+  opacity: 1;
+  transition: 2000ms;
+}
+.searchDetails-description {
+  color: white;
+}
+.searchDetails-description:hover {
+  text-decoration: underline;
+  color: white;
+}
+.searchDetails-runtime:hover {
+  text-decoration: underline;
 }
