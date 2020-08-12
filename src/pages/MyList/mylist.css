@@ -1,3 +1,10 @@
+.viewportHeight {
+  height: 100vh;
+}
+.noMoviesTitle {
+  color: white;
+  font-weight: bolder;
+}
 .myListContainer {
   margin-top: 70px;
 }
@@ -70,4 +77,19 @@
 }
 .listItemDetails-runtime:hover {
   text-decoration: underline;
+}
+.deleteIcon {
+  opacity: 0.8;
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin-top: 5px;
+  margin-right: 30px;
+  height: 30px;
+  transition: 400ms;
+}
+.deleteIcon:hover {
+  opacity: 1;
+  transition: 400ms;
+  transform: scale(1.1);
 }

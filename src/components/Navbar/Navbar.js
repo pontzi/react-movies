@@ -64,12 +64,6 @@ const Navbar = (props) => {
         <Link to="/">
           <img src={logo} className="logo" alt="Logo" />
         </Link>
-        <Link to="/">
-          <p className="navbarItem mr-2">Most popular</p>
-        </Link>
-        <Link to="/">
-          <p className="navbarItem mr-2">Highest rated</p>
-        </Link>
       </div>
       <div className="navbarRight d-flex align-items-center">
         {state.search === null && (

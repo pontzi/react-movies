@@ -1,14 +1,25 @@
-import React, { useContext } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
 import { MoviesContext } from "../../context/MoviesProvider";
 import "../carousel/carousel.css";
 import "./search.css";
+import redHeart from "../carousel/redHeart.png";
+import blackHeart from "../carousel/blackHeart.png";
 
 const Search = (props) => {
-  const { movies } = useContext(MoviesContext);
+  const [viewportHeight, setViewportHeight] = useState("");
+  const { movies, myMoviesList, setToMyList } = useContext(MoviesContext);
   const { allMovies } = movies;
   let moviesData = undefined;
+
   const currentQuery = props.match.params.searchName;
+
+  let moviesWithoutRepeating = [];
+  useEffect(() => {
+    if (moviesWithoutRepeating.length <= 4) {
+      setViewportHeight("viewportHeight");
+    }
+  }, [moviesWithoutRepeating]);
 
   if (!allMovies) {
     return <div></div>;
@@ -25,7 +36,7 @@ const Search = (props) => {
         </div>
       );
     }
-    const moviesWithoutRepeating = moviesData.filter(
+    moviesWithoutRepeating = moviesData.filter(
       (currentMovie, currentIndex, array) => {
         return (
           array.findIndex(
@@ -35,58 +46,104 @@ const Search = (props) => {
         );
       }
     );
+  }
+  const validation = (movieID) => {
+    const entries = Object.entries(myMoviesList);
 
-    return (
-      <div>
-        <div className={"searchResultsContainer container"}>
-          <h2 className="searchTitle mt-2">Results</h2>
-          <div className="align-items-center row">
-            {moviesWithoutRepeating.map((movie) => (
-              <div
-                className="searchItem mt-4 col-12 col-md-6 col-lg-4 col-xl-3"
-                key={movie.id}
-              >
-                {!movie.poster_path && (
-                  <img
-                    className="searchPoster"
-                    src="https://picsum.photos/720"
-                    alt="Poster"
-                  />
-                )}
-                {movie.poster_path && (
-                  <img
-                    className="searchPoster"
-                    src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
-                    alt="Poster"
-                  />
-                )}
+    const id = movieID.toString();
 
-                <div className="searchDetails">
-                  <p className="searchDetails-title">{movie.title}</p>
-                  <p className="searchDetails-runtime">{`${movie.runtime} min`}</p>
-                  <Link
-                    to={{
-                      pathname: `/description/${movie.id}`,
-                      state: {
-                        ...movie,
-                        poster_path:
-                          movie.poster_path || "https://picsum.photos/720",
-                      },
-                    }}
-                  >
-                    <p className="searchDetails-description">
-                      Read full description
-                    </p>
-                  </Link>
-                </div>
+    const result = entries.filter((entry) => entry[0] === id);
+
+    if (result.length > 0) {
+      if (result[0][1] === undefined) {
+        return undefined;
+      }
+      if (result[0][1]) {
+        return true;
+      }
+    } else {
+      return null;
+    }
+  };
+  const addToMyList = (movieID) => {
+    const result = validation(movieID);
+    if (result === undefined) {
+      setToMyList(movieID, undefined);
+      return;
+    }
+    if (result === null) {
+      setToMyList(movieID, null);
+      return;
+    }
+    if (result === true) {
+      setToMyList(movieID, true);
+      return;
+    }
+  };
+
+  return (
+    <div>
+      <div className={`searchResultsContainer ${viewportHeight} container`}>
+        <h2 className="searchTitle mt-2">Results</h2>
+        <div className="align-items-center row">
+          {moviesWithoutRepeating.map((movie) => (
+            <div
+              className="searchItem mt-4 col-12 col-md-6 col-lg-4 col-xl-3"
+              key={movie.id}
+            >
+              {!movie.poster_path && (
+                <img
+                  className="searchPoster"
+                  src="https://picsum.photos/720"
+                  alt="Poster"
+                />
+              )}
+              {movie.poster_path && (
+                <img
+                  className="searchPoster"
+                  src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+                  alt="Poster"
+                />
+              )}
+              {myMoviesList[`${movie.id}`] ? (
+                <img
+                  onClick={() => addToMyList(movie.id)}
+                  src={redHeart}
+                  alt="Heart"
+                  className="searchItemHeart"
+                />
+              ) : (
+                <img
+                  onClick={() => addToMyList(movie.id)}
+                  src={blackHeart}
+                  alt="Heart"
+                  className="searchItemHeart"
+                />
+              )}
+
+              <div className="searchDetails">
+                <p className="searchDetails-title">{movie.title}</p>
+                <p className="searchDetails-runtime">{`${movie.runtime} min`}</p>
+                <Link
+                  to={{
+                    pathname: `/description/${movie.id}`,
+                    state: {
+                      ...movie,
+                      poster_path:
+                        movie.poster_path || "https://picsum.photos/720",
+                    },
+                  }}
+                >
+                  <p className="searchDetails-description">
+                    Read full description
+                  </p>
+                </Link>
               </div>
-            ))}
-          </div>
+            </div>
+          ))}
         </div>
       </div>
-    );
-  }
-  return <div></div>;
+    </div>
+  );
 };
-
 export default Search;
