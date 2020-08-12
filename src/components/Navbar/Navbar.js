@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-import { Link, withRouter, Redirect } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 import search from "./search.png";
 import logo from "./logo.png";
 import "./navbar.css";

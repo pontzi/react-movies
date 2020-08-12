@@ -2,8 +2,8 @@ import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { MoviesContext } from "../../context/MoviesProvider";
 import Loader from "../Loader/Loader";
-import heart from "./heart.png";
 import redHeart from "./redHeart.png";
+import blackHeart from "./blackHeart.png";
 import "./carousel.css";
 
 const Carousel = (props) => {
@@ -63,13 +63,6 @@ const Carousel = (props) => {
       return;
     }
   };
-  const iconAddedRemoved = (movieID, list) => {
-    if (list.movieID) {
-      return true;
-    } else {
-      return false;
-    }
-  };
 
   return (
     <div>
@@ -92,9 +85,22 @@ const Carousel = (props) => {
                   alt="Poster"
                 />
               )}
-
+              {myMoviesList[`${movie.id}`] ? (
+                <img
+                  onClick={() => addToMyList(movie.id)}
+                  src={redHeart}
+                  alt="Heart"
+                  className="carousel-item_details--heart"
+                />
+              ) : (
+                <img
+                  onClick={() => addToMyList(movie.id)}
+                  src={blackHeart}
+                  alt="Heart"
+                  className="carousel-item_details--heart"
+                />
+              )}
               <div className="carousel-item_details">
-                <h1 onClick={() => addToMyList(movie.id)}>icon</h1>
                 <p className="carousel-item__details--title">{movie.title}</p>
                 <p className="carousel-item__details--runtime">
                   {`${movie.runtime} min`}
