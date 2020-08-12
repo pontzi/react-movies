@@ -6,6 +6,7 @@ import MovieDescription from "./pages/MovieDescription";
 import Search from "./components/Search/Search";
 import Layout from "./components/Layout/Layout";
 import { MoviesProvider } from "./context/MoviesProvider";
+import MyList from "./pages/MyList/MyList";
 
 function App() {
   const location = useLocation();
@@ -17,6 +18,7 @@ function App() {
             <Route exact path="/" component={Home} />
             <Route exact path="/description/:id" component={MovieDescription} />
             <Route exact path="/search/:searchName" component={Search} />
+            <Route exact path="/mylist" component={MyList} />
           </Layout>
         </Switch>
       </AnimatePresence>

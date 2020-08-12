@@ -68,7 +68,7 @@ body::-webkit-scrollbar-thumb {
   position: absolute;
   bottom: 0;
   opacity: 0.65;
-  transition: 2000ms opacity;
+  transition: 2000ms;
   border-radius: 20px; }
 
 .carousel-item_details p {
@@ -95,6 +95,9 @@ body::-webkit-scrollbar-thumb {
 
 .carousel-item__details--runtime:hover {
   text-decoration: underline; }
+
+.icon {
+  background-color: white; }
 
 @media only screen and (max-width: 768px) {
   .carousel {

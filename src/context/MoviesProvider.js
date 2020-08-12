@@ -12,6 +12,7 @@ let { Provider, Consumer } = MoviesContext;
 
 const MoviesProvider = ({ children }) => {
   const [movies, setMovies] = useState({});
+  const [myMoviesList, setMyMoviesList] = useState({});
 
   const apiKey = "4c33c096c97964f1af4afe925f4f5687";
   const baseUrl = "https://api.themoviedb.org/3";
@@ -90,6 +91,29 @@ const MoviesProvider = ({ children }) => {
       allMovies,
     });
   };
+  const setToMyList = (movieID, status) => {
+    if (status === undefined) {
+      setMyMoviesList({
+        ...myMoviesList,
+        [movieID]: movieID,
+      });
+      return;
+    }
+    if (status === null) {
+      setMyMoviesList({
+        ...myMoviesList,
+        [movieID]: movieID,
+      });
+      return;
+    }
+    if (status === true) {
+      setMyMoviesList({
+        ...myMoviesList,
+        [movieID]: undefined,
+      });
+      return;
+    }
+  };
 
   useEffect(() => {
     getData(
@@ -101,7 +125,11 @@ const MoviesProvider = ({ children }) => {
     );
   }, []);
 
-  return <Provider value={{ movies }}>{children}</Provider>;
+  return (
+    <Provider value={{ movies, myMoviesList, setToMyList }}>
+      {children}
+    </Provider>
+  );
 };
 
 export { MoviesProvider, Consumer, MoviesContext };

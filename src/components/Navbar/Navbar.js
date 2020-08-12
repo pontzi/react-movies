@@ -94,7 +94,7 @@ const Navbar = (props) => {
           </div>
         )}
 
-        <Link to="/">
+        <Link to="/mylist">
           <p>My list</p>
         </Link>
       </div>

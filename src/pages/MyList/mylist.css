@@ -1,0 +1,73 @@
+.myListContainer {
+  margin-top: 70px;
+}
+
+.myListTitle {
+  font-weight: bolder;
+  color: white;
+}
+.myListItem {
+  width: 250px;
+  height: 250px;
+  position: relative;
+  border-radius: 20px;
+  transition: 450ms;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+}
+.myListContainer:hover .myListItem {
+  opacity: 0.5;
+}
+
+.myListContainer:hover .myListItem:hover {
+  transform: scale(1.1);
+  opacity: 1;
+  transition: 200ms;
+}
+.listItemDetails {
+  position: absolute;
+  bottom: 0;
+  color: white;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0));
+  width: 250px;
+  position: absolute;
+  padding: 10px;
+  opacity: 0.65;
+  transition: 2000ms;
+  border-radius: 20px;
+}
+.listItemPoster {
+  width: 250px;
+  height: 250px;
+  border-radius: 20px;
+  object-fit: cover;
+  transition: 200m;
+}
+
+.listItemDetails p {
+  margin-bottom: 0px;
+}
+.listItemDetails-title {
+  font-weight: bolder;
+  font-size: 20px;
+}
+.listItemDetails-title:hover {
+  text-decoration: underline;
+  transform: scale(1.02);
+  transition: 200ms;
+}
+.myListItem:hover .listItemDetails {
+  opacity: 1;
+  transition: 2000ms;
+}
+.listItemDetails-description {
+  color: white;
+}
+.listItemDetails-description:hover {
+  text-decoration: underline;
+  color: white;
+}
+.listItemDetails-runtime:hover {
+  text-decoration: underline;
+}

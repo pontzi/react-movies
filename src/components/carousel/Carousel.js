@@ -2,10 +2,12 @@ import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { MoviesContext } from "../../context/MoviesProvider";
 import Loader from "../Loader/Loader";
+import heart from "./heart.png";
+import redHeart from "./redHeart.png";
 import "./carousel.css";
 
 const Carousel = (props) => {
-  const { movies } = useContext(MoviesContext);
+  const { movies, myMoviesList, setToMyList } = useContext(MoviesContext);
   const { categoryKey, title } = props;
 
   const assignCategory = () => {
@@ -28,6 +30,46 @@ const Carousel = (props) => {
   if (!categoryData) {
     return <Loader />;
   }
+  const validation = (movieID) => {
+    const entries = Object.entries(myMoviesList);
+
+    const id = movieID.toString();
+
+    const result = entries.filter((entry) => entry[0] === id);
+
+    if (result.length > 0) {
+      if (result[0][1] === undefined) {
+        return undefined;
+      }
+      if (result[0][1]) {
+        return true;
+      }
+    } else {
+      return null;
+    }
+  };
+  const addToMyList = (movieID) => {
+    const result = validation(movieID);
+    if (result === undefined) {
+      setToMyList(movieID, undefined);
+      return;
+    }
+    if (result === null) {
+      setToMyList(movieID, null);
+      return;
+    }
+    if (result === true) {
+      setToMyList(movieID, true);
+      return;
+    }
+  };
+  const iconAddedRemoved = (movieID, list) => {
+    if (list.movieID) {
+      return true;
+    } else {
+      return false;
+    }
+  };
 
   return (
     <div>
@@ -52,6 +94,7 @@ const Carousel = (props) => {
               )}
 
               <div className="carousel-item_details">
+                <h1 onClick={() => addToMyList(movie.id)}>icon</h1>
                 <p className="carousel-item__details--title">{movie.title}</p>
                 <p className="carousel-item__details--runtime">
                   {`${movie.runtime} min`}
