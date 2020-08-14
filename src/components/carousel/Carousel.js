@@ -2,31 +2,14 @@ import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { MoviesContext } from "../../context/MoviesProvider";
 import Loader from "../Loader/Loader";
-import redHeart from "./redHeart.png";
-import blackHeart from "./blackHeart.png";
+import { assignCategory } from "./helpers/assignCategory";
 import "./carousel.css";
 
 const Carousel = (props) => {
   const { movies, myMoviesList, setToMyList } = useContext(MoviesContext);
   const { categoryKey, title } = props;
 
-  const assignCategory = () => {
-    switch (categoryKey) {
-      case "popular":
-        return movies.popular;
-      case "drama":
-        return movies.drama;
-      case "old":
-        return movies.old;
-      case "fiction":
-        return movies.fiction;
-      case "kids":
-        return movies.kids;
-      default:
-        break;
-    }
-  };
-  const categoryData = assignCategory();
+  const categoryData = assignCategory(categoryKey, movies);
   if (!categoryData) {
     return <Loader />;
   }
@@ -85,21 +68,18 @@ const Carousel = (props) => {
                   alt="Poster"
                 />
               )}
-              {myMoviesList[`${movie.id}`] ? (
-                <img
-                  onClick={() => addToMyList(movie.id)}
-                  src={redHeart}
-                  alt="Heart"
-                  className="carousel-item_details--heart"
-                />
-              ) : (
-                <img
-                  onClick={() => addToMyList(movie.id)}
-                  src={blackHeart}
-                  alt="Heart"
-                  className="carousel-item_details--heart"
-                />
-              )}
+
+              <img
+                onClick={() => addToMyList(movie.id)}
+                src={
+                  myMoviesList[`${movie.id}`]
+                    ? "https://image.flaticon.com/icons/svg/535/535183.svg"
+                    : "https://image.flaticon.com/icons/svg/535/535234.svg"
+                }
+                alt="Heart"
+                className="carousel-item_details--heart"
+              />
+
               <div className="carousel-item_details">
                 <p className="carousel-item__details--title">{movie.title}</p>
                 <p className="carousel-item__details--runtime">

@@ -7,8 +7,8 @@ import {
   scienceFiction,
 } from "../pages/helpers/categories";
 
-let MoviesContext = React.createContext();
-let { Provider, Consumer } = MoviesContext;
+const MoviesContext = React.createContext();
+const { Provider, Consumer } = MoviesContext;
 
 const MoviesProvider = ({ children }) => {
   const [movies, setMovies] = useState({});

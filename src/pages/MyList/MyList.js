@@ -3,20 +3,14 @@ import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import swal from "sweetalert";
 import { MoviesContext } from "../../context/MoviesProvider";
-import deleteIcon from "./delete.png";
 
 import "./mylist.css";
 
 const MyList = () => {
-  const [viewportHeight, setViewportHeight] = useState("");
   const { myMoviesList, setToMyList, movies } = useContext(MoviesContext);
   const { allMovies } = movies;
   let moviesWithoutRepeating = [];
-  useEffect(() => {
-    if (moviesWithoutRepeating.length <= 4) {
-      setViewportHeight("viewportHeight");
-    }
-  }, [moviesWithoutRepeating]);
+
   if (!allMovies) {
     return (
       <div className="myListContainer container">
@@ -85,54 +79,56 @@ const MyList = () => {
   }
   return (
     <motion.div initial="out" animate="in" exit="out" variants={pageVariant}>
-      <div className={`myListContainer ${viewportHeight} container`}>
+      <div className={"myListContainer container"}>
         <h2 className="myListTitle mt-2">My list</h2>
 
         <div className="align-items-center row">
           {moviesWithoutRepeating.map((movie) => (
             <div
-              className="myListItem mt-4 col-12 col-md-6 col-lg-4 col-xl-3"
+              className="d-flex justify-content-center mt-4 col-12 col-md-6 col-lg-4 col-xl-3"
               key={movie.id}
             >
-              {!movie.poster_path && (
-                <img
-                  className="listItemPoster"
-                  src="https://picsum.photos/720"
-                  alt="Poster"
-                />
-              )}
-              {movie.poster_path && (
-                <img
-                  className="listItemPoster"
-                  src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
-                  alt="Poster"
-                />
-              )}
+              <div className="myListItem">
+                {!movie.poster_path && (
+                  <img
+                    className="listItemPoster"
+                    src="https://picsum.photos/720"
+                    alt="Poster"
+                  />
+                )}
+                {movie.poster_path && (
+                  <img
+                    className="listItemPoster"
+                    src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+                    alt="Poster"
+                  />
+                )}
 
-              <img
-                onClick={() => onHandleDelete(movie.id)}
-                src={deleteIcon}
-                alt="Delete Icon"
-                className="deleteIcon"
-              />
+                <img
+                  onClick={() => onHandleDelete(movie.id)}
+                  src="https://image.flaticon.com/icons/svg/2716/2716329.svg"
+                  alt="Delete Icon"
+                  className="deleteIcon"
+                />
 
-              <div className="listItemDetails">
-                <p className="listItemDetails-title">{movie.title}</p>
-                <p className="listItemDetails-runtime">{`${movie.runtime} min`}</p>
-                <Link
-                  to={{
-                    pathname: `/description/${movie.id}`,
-                    state: {
-                      ...movie,
-                      poster_path:
-                        movie.poster_path || "https://picsum.photos/720",
-                    },
-                  }}
-                >
-                  <p className="listItemDetails-description">
-                    Read full description
-                  </p>
-                </Link>
+                <div className="listItemDetails">
+                  <p className="listItemDetails-title">{movie.title}</p>
+                  <p className="listItemDetails-runtime">{`${movie.runtime} min`}</p>
+                  <Link
+                    to={{
+                      pathname: `/description/${movie.id}`,
+                      state: {
+                        ...movie,
+                        poster_path:
+                          movie.poster_path || "https://picsum.photos/720",
+                      },
+                    }}
+                  >
+                    <p className="listItemDetails-description">
+                      Read full description
+                    </p>
+                  </Link>
+                </div>
               </div>
             </div>
           ))}

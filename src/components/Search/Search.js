@@ -3,11 +3,8 @@ import { Link } from "react-router-dom";
 import { MoviesContext } from "../../context/MoviesProvider";
 import "../carousel/carousel.css";
 import "./search.css";
-import redHeart from "../carousel/redHeart.png";
-import blackHeart from "../carousel/blackHeart.png";
 
 const Search = (props) => {
-  const [viewportHeight, setViewportHeight] = useState("");
   const { movies, myMoviesList, setToMyList } = useContext(MoviesContext);
   const { allMovies } = movies;
   let moviesData = undefined;
@@ -15,11 +12,6 @@ const Search = (props) => {
   const currentQuery = props.match.params.searchName;
 
   let moviesWithoutRepeating = [];
-  useEffect(() => {
-    if (moviesWithoutRepeating.length <= 4) {
-      setViewportHeight("viewportHeight");
-    }
-  }, [moviesWithoutRepeating]);
 
   if (!allMovies) {
     return <div></div>;
@@ -83,61 +75,58 @@ const Search = (props) => {
 
   return (
     <div>
-      <div className={`searchResultsContainer ${viewportHeight} container`}>
-        <h2 className="searchTitle mt-2">Results</h2>
+      <div className={"searchResultsContainer container"}>
+        <h2 className="searchTitle ">Results</h2>
         <div className="align-items-center row">
           {moviesWithoutRepeating.map((movie) => (
             <div
-              className="searchItem mt-4 col-12 col-md-6 col-lg-4 col-xl-3"
+              className="d-flex justify-content-center mt-4 col-12 col-md-6 col-lg-4 col-xl-3"
               key={movie.id}
             >
-              {!movie.poster_path && (
-                <img
-                  className="searchPoster"
-                  src="https://picsum.photos/720"
-                  alt="Poster"
-                />
-              )}
-              {movie.poster_path && (
-                <img
-                  className="searchPoster"
-                  src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
-                  alt="Poster"
-                />
-              )}
-              {myMoviesList[`${movie.id}`] ? (
-                <img
-                  onClick={() => addToMyList(movie.id)}
-                  src={redHeart}
-                  alt="Heart"
-                  className="searchItemHeart"
-                />
-              ) : (
+              <div className="searchItem">
+                {!movie.poster_path && (
+                  <img
+                    className="searchPoster"
+                    src="https://picsum.photos/720"
+                    alt="Poster"
+                  />
+                )}
+                {movie.poster_path && (
+                  <img
+                    className="searchPoster"
+                    src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+                    alt="Poster"
+                  />
+                )}
                 <img
                   onClick={() => addToMyList(movie.id)}
-                  src={blackHeart}
+                  src={
+                    myMoviesList[`${movie.id}`]
+                      ? "https://image.flaticon.com/icons/svg/535/535183.svg"
+                      : "https://image.flaticon.com/icons/svg/535/535234.svg"
+                  }
                   alt="Heart"
-                  className="searchItemHeart"
+                  className="carousel-item_details--heart"
                 />
-              )}
 
-              <div className="searchDetails">
-                <p className="searchDetails-title">{movie.title}</p>
-                <p className="searchDetails-runtime">{`${movie.runtime} min`}</p>
-                <Link
-                  to={{
-                    pathname: `/description/${movie.id}`,
-                    state: {
-                      ...movie,
-                      poster_path:
-                        movie.poster_path || "https://picsum.photos/720",
-                    },
-                  }}
-                >
-                  <p className="searchDetails-description">
-                    Read full description
-                  </p>
-                </Link>
+                <div className="searchDetails">
+                  <p className="searchDetails-title">{movie.title}</p>
+                  <p className="searchDetails-runtime">{`${movie.runtime} min`}</p>
+                  <Link
+                    to={{
+                      pathname: `/description/${movie.id}`,
+                      state: {
+                        ...movie,
+                        poster_path:
+                          movie.poster_path || "https://picsum.photos/720",
+                      },
+                    }}
+                  >
+                    <p className="searchDetails-description">
+                      Read full description
+                    </p>
+                  </Link>
+                </div>
               </div>
             </div>
           ))}
