@@ -1,78 +1,34 @@
-import React, { useRef, useState, useEffect } from "react";
-
+import React, { useRef } from "react";
 import video from "./joker.mp4";
 import unmute from "./unmute.png";
 import mute from "./mute.png";
-import "./video.css";
+import useMuteUnmute from "./hooks/useMuteUnmute";
 import PageVisibility from "react-page-visibility";
+import "./video.css";
 
 const Video = () => {
-  const [status, setStatus] = useState({
-    volume: null,
-  });
   const vid = useRef();
-  useEffect(() => {
-    const observer = new window.IntersectionObserver(function (entries) {
-      const { isIntersecting } = entries[0];
-      if (isIntersecting) {
-        vid.current.play();
-      } else {
-        vid.current.pause();
-      }
-    });
-    observer.observe(vid.current);
-    return () => {
-      observer.disconnect();
-    };
-  }, []);
+  const [muteUnmute, handleVisibilityChange, status] = useMuteUnmute(vid);
 
-  //-------------------------------------------------------
-  const muteUnmute = () => {
-    if (vid.current.muted === false) {
-      vid.current.muted = true;
-      setStatus({
-        ...status,
-        volume: false,
-      });
-    } else {
-      vid.current.muted = false;
-      setStatus({
-        ...status,
-        volume: true,
-      });
-    }
-  };
-
-  const handleVisibilityChange = (isVisible) => {
-    if (isVisible) {
-      vid.current.play();
-    } else {
-      vid.current.pause();
-    }
-  };
   return (
     <PageVisibility onChange={handleVisibilityChange}>
-      <div className={"videoContainer"}>
-        <video ref={vid} className="video" loop autoPlay muted preload="true">
+      <div className="videoContainer">
+        <video ref={vid} className="video" loop autoPlay muted>
           <source src={video} />
         </video>
 
-        {!status.volume && (
-          <div onClick={muteUnmute} className="muteUnmute">
-            <img src={mute} alt="mute" />
-          </div>
-        )}
-        {status.volume && (
-          <div onClick={muteUnmute} className="muteUnmute">
-            <img className="muteUnmuteIcon" src={unmute} alt="unmute" />
-          </div>
-        )}
+        <div onClick={muteUnmute} className="muteUnmute">
+          <img src={!status.volume ? mute : unmute} alt="muteUnmute" />
+        </div>
+
         <div className="details">
-          <div className="titleContainer">
-            <h2 className="mainVideoTitle">JOKER (2019)</h2>
+          <div className="details-titleContainer">
+            <h2 className="details-titleContainer__mainVideoTitle">
+              JOKER (2019)
+            </h2>
           </div>
-          <div className="descriptionContainer">
-            <p className="mainVideoDescription">
+          <div className="details-descriptionContainer">
+            <p className="details-descriptionContainer__mainVideoDescription">
               In Gotham City, mentally troubled comedian Arthur Fleck is
               disregarded and mistreated by society. He then embarks on a
               downward spiral of revolution and bloody crime. This path brings

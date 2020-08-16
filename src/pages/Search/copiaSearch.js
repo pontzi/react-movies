@@ -1,7 +1,6 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { MoviesContext } from "../../context/MoviesProvider";
-import "../carousel/carousel.css";
 import "./search.css";
 
 const Search = (props) => {
@@ -59,17 +58,18 @@ const Search = (props) => {
   };
   const addToMyList = (movieID) => {
     const result = validation(movieID);
-    if (result === undefined) {
-      setToMyList(movieID, undefined);
-      return;
-    }
-    if (result === null) {
-      setToMyList(movieID, null);
-      return;
-    }
-    if (result === true) {
-      setToMyList(movieID, true);
-      return;
+    switch (result) {
+      case undefined:
+        setToMyList(movieID, undefined);
+        break;
+      case null:
+        setToMyList(movieID, null);
+        break;
+      case true:
+        setToMyList(movieID, true);
+        break;
+      default:
+        break;
     }
   };
 
@@ -84,20 +84,16 @@ const Search = (props) => {
               key={movie.id}
             >
               <div className="searchItem">
-                {!movie.poster_path && (
-                  <img
-                    className="searchPoster"
-                    src="https://picsum.photos/720"
-                    alt="Poster"
-                  />
-                )}
-                {movie.poster_path && (
-                  <img
-                    className="searchPoster"
-                    src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
-                    alt="Poster"
-                  />
-                )}
+                <img
+                  className="searchItem-searchPoster"
+                  src={
+                    !movie.poster_path
+                      ? "https://picsum.photos/720"
+                      : `https://image.tmdb.org/t/p/w500${movie.poster_path}`
+                  }
+                  alt="Poster"
+                />
+
                 <img
                   onClick={() => addToMyList(movie.id)}
                   src={
@@ -106,12 +102,14 @@ const Search = (props) => {
                       : "https://image.flaticon.com/icons/svg/535/535234.svg"
                   }
                   alt="Heart"
-                  className="carousel-item_details--heart"
+                  className="searchItem-heart"
                 />
 
-                <div className="searchDetails">
-                  <p className="searchDetails-title">{movie.title}</p>
-                  <p className="searchDetails-runtime">{`${movie.runtime} min`}</p>
+                <div className="searchItem-searchDetails">
+                  <p className="seartchItem-searchDetails__title">
+                    {movie.title}
+                  </p>
+                  <p className="searchItem-searchDetails__runtime">{`${movie.runtime} min`}</p>
                   <Link
                     to={{
                       pathname: `/description/${movie.id}`,
@@ -122,7 +120,7 @@ const Search = (props) => {
                       },
                     }}
                   >
-                    <p className="searchDetails-description">
+                    <p className="searchItem-searchDetails__description">
                       Read full description
                     </p>
                   </Link>

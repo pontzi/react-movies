@@ -1,60 +1,17 @@
-import React, { useEffect, useState } from "react";
-
+import React from "react";
 import { Link, withRouter } from "react-router-dom";
 import search from "./search.png";
 import logo from "./logo.png";
+import useNavbarChanges from "./hooks/useNavbarChanges";
 import "./navbar.css";
 
 const Navbar = (props) => {
-  const [state, setState] = useState({
-    background: null,
-    search: null,
-    value: undefined,
-  });
-  useEffect(() => {
-    if (state.value === "") {
-      props.history.push("/");
-    }
-  }, [state.value]);
-  window.onscroll = function () {
-    onHandleScroll();
-  };
-
-  function onHandleScroll() {
-    if (
-      document.body.scrollTop > 50 ||
-      document.documentElement.scrollTop > 50
-    ) {
-      setState({
-        ...state,
-        background: "navBackground",
-      });
-    } else {
-      setState({
-        ...state,
-        background: "",
-      });
-    }
-  }
-  const onHandleClick = () => {
-    setState({
-      ...state,
-      search: true,
-    });
-  };
-  const onHandleFocusOut = () => {
-    setState({
-      ...state,
-      search: null,
-    });
-  };
-  const onHandleChange = (e) => {
-    setState({
-      ...state,
-      value: e.target.value,
-    });
-    props.history.push(`/search/${e.target.value}`);
-  };
+  const [
+    state,
+    onHandleClick,
+    onHandleFocusOut,
+    onHandleChange,
+  ] = useNavbarChanges(props);
 
   return (
     <div
@@ -62,22 +19,21 @@ const Navbar = (props) => {
     >
       <div className="navbarLeft d-flex align-items-center ">
         <Link to="/">
-          <img src={logo} className="logo" alt="Logo" />
+          <img src={logo} className="navbarLeft-logo" alt="Logo" />
         </Link>
       </div>
       <div className="navbarRight d-flex align-items-center">
-        {state.search === null && (
+        {state.search === null ? (
           <img
             onClick={onHandleClick}
-            className="search"
+            className="navbarRight-search"
             src={search}
             alt="search"
           />
-        )}
-        {state.search && (
-          <div className="inputContainer">
+        ) : (
+          <div className="navbarRight-inputContainer">
             <input
-              className="navbarInput"
+              className="navbarRight-inputContainer__navbarInput"
               type="text"
               placeholder="Search a movie"
               autoFocus
@@ -87,7 +43,6 @@ const Navbar = (props) => {
             />
           </div>
         )}
-
         <Link to="/mylist">
           <p>My list</p>
         </Link>

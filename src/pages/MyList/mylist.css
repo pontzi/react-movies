@@ -32,7 +32,7 @@
   opacity: 1;
   transition: 200ms;
 }
-.listItemDetails {
+.myListItem-details {
   position: absolute;
   bottom: 0;
   color: white;
@@ -44,7 +44,7 @@
   transition: 2000ms;
   border-radius: 20px;
 }
-.listItemPoster {
+.myListItem-poster {
   width: 250px;
   height: 250px;
   border-radius: 20px;
@@ -52,33 +52,33 @@
   transition: 200m;
 }
 
-.listItemDetails p {
+.myListItem-details p {
   margin-bottom: 0px;
 }
-.listItemDetails-title {
+.myListItem-details__title {
   font-weight: bolder;
   font-size: 20px;
 }
-.listItemDetails-title:hover {
+.myListItem-details__title:hover {
   text-decoration: underline;
   transform: scale(1.02);
   transition: 200ms;
 }
-.myListItem:hover .listItemDetails {
+.myListItem:hover .myListItem-details {
   opacity: 1;
   transition: 2000ms;
 }
-.listItemDetails-description {
+.myListItem-details__description {
   color: white;
 }
-.listItemDetails-description:hover {
+.myListItem-details__description:hover {
   text-decoration: underline;
   color: white;
 }
-.listItemDetails-runtime:hover {
+.myListItem-details__runtime:hover {
   text-decoration: underline;
 }
-.deleteIcon {
+.myListItem-deleteIcon {
   opacity: 0.8;
   position: absolute;
   top: 0;
@@ -88,7 +88,7 @@
   height: 30px;
   transition: 400ms;
 }
-.deleteIcon:hover {
+.myListItem-deleteIcon:hover {
   opacity: 1;
   transition: 400ms;
   transform: scale(1.1);

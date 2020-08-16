@@ -1,7 +1,4 @@
-.videoContainerAbsolute
-  position: absolute
-  top: 0
-  bottom: 0
+
 .videoContainer
   position: relative
 .video
@@ -45,8 +42,6 @@
   justify-content: center
   align-items: center
   cursor: pointer
-  &::selection
-    color: rgba(255,255,255,0.8)
   &:hover
     background-color: rgba(255, 255, 255, 0.1)
     transform: scale(1.04)
@@ -54,17 +49,19 @@
   img
     height: 25px
     width: 25px
+    &::selection
+      color: rgba(255,255,255,0.8)
 .details
   overflow: hidden
   position: absolute
   bottom: 0
   margin-left: 60px
   margin-bottom: 200px
-.titleContainer
+.details-titleContainer
   overflow: hidden
   &:hover
     width: auto
-.mainVideoTitle
+.details-titleContainer__mainVideoTitle
   transition: 500ms
   font-family: 'Cinzel', serif
   color: #bf0603
@@ -77,12 +74,12 @@
     transform: scale(1.01)
   &::selection
     color: rgba(240, 52, 52, 1)
-.descriptionContainer
+.details-descriptionContainer
   width: 500px
   overflow: hidden
   height: 100px
   margin-top: 0px
-.mainVideoDescription
+.details-descriptionContainer__mainVideoDescription
   font-family: 'Cinzel', serif
   color: rgba(255,255,255,0.8)
   font-size: 16px
@@ -106,9 +103,9 @@
     width: 100%
 
 @media only screen and (max-width: 925px) 
-  .mainVideoTitle 
+  .details-titleContainer__mainVideoTitle 
     font-size: 50px
-  .mainVideoDescription
+  .details-descriptionContainer__mainVideoDescription
     font-size: 14px
   .details
     margin-bottom: 120px
@@ -118,14 +115,14 @@
     margin-right: 40px
   .muteUnmute
     margin-bottom: 40px
-  .descriptionContainer
+  .details-descriptionContainer
     width: auto
     word-break: break-all
     height: auto
 @media only screen and (max-width: 465px) 
   .details
     margin-left: 10px
-  .mainVideoTitle
+  .details-titleContainer__mainVideoTitle
     font-size: 30px
   
     
@@ -134,5 +131,5 @@
     margin-right: 10px
     
 @media only screen and (max-width: 285px)
-  .descriptionContainer
+  .details-descriptionContainer
     display: none

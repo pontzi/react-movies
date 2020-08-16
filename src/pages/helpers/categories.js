@@ -8,4 +8,32 @@ const dramaClassics =
 const scienceFiction =
   "/discover/movie?with_genres=878&with_cast=500&sort_by=vote_average.desc";
 
-export { popularMovies, kidsMovies, oldMovies, dramaClassics, scienceFiction };
+const popular = "popular";
+const kids = "kids";
+const drama = "drama";
+const fiction = "fiction";
+const old = "old";
+
+const popularTitle = "Popular Movies";
+const kidsTitle = "Kids Movies";
+const oldTitle = "Old Movies";
+const dramaTitle = "Drama Classics";
+const fictionTitle = "Science Fiction";
+
+export {
+  popularMovies,
+  kidsMovies,
+  oldMovies,
+  dramaClassics,
+  scienceFiction,
+  popular,
+  kids,
+  drama,
+  fiction,
+  old,
+  popularTitle,
+  kidsTitle,
+  oldTitle,
+  dramaTitle,
+  fictionTitle,
+};

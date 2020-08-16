@@ -4,19 +4,19 @@
   border-bottom: 1px solid gray;
   display: flex; }
 
-.goBack {
+.detailsMovieContainer-goBack {
   width: 300px;
   color: white;
   height: 150px; }
 
-.goBackIcon {
+.detailsMovieContainer-goBack__icon {
   height: 60px; }
 
-.title {
+.detailsMovieContainer-title {
   color: white;
   font-weight: bolder; }
 
-.descriptionMovieImg {
+.detailsMovieContainer-movieImg {
   width: 100%;
   max-width: 500px; }
 
@@ -36,7 +36,7 @@
   .descriptionMovieContainer {
     flex-direction: column; }
 
-  .goBack {
+  .detailsMovieContainer-goBack {
     align-self: flex-end;
     display: flex;
     flex-direction: column;

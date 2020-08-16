@@ -1,8 +1,3 @@
-.videoContainerAbsolute {
-  position: absolute;
-  top: 0;
-  bottom: 0; }
-
 .videoContainer {
   position: relative; }
 
@@ -47,8 +42,6 @@
   justify-content: center;
   align-items: center;
   cursor: pointer; }
-  .muteUnmute::selection {
-    color: rgba(255, 255, 255, 0.8); }
   .muteUnmute:hover {
     background-color: rgba(255, 255, 255, 0.1);
     transform: scale(1.04);
@@ -56,6 +49,8 @@
   .muteUnmute img {
     height: 25px;
     width: 25px; }
+    .muteUnmute img::selection {
+      color: rgba(255, 255, 255, 0.8); }
 
 .details {
   overflow: hidden;
@@ -64,12 +59,12 @@
   margin-left: 60px;
   margin-bottom: 200px; }
 
-.titleContainer {
+.details-titleContainer {
   overflow: hidden; }
-  .titleContainer:hover {
+  .details-titleContainer:hover {
     width: auto; }
 
-.mainVideoTitle {
+.details-titleContainer__mainVideoTitle {
   transition: 500ms;
   font-family: "Cinzel", serif;
   color: #bf0603;
@@ -77,19 +72,19 @@
   animation-duration: 3s;
   animation-name: slidein;
   cursor: pointer; }
-  .mainVideoTitle:hover {
+  .details-titleContainer__mainVideoTitle:hover {
     transition: 500ms;
     transform: scale(1.01); }
-  .mainVideoTitle::selection {
+  .details-titleContainer__mainVideoTitle::selection {
     color: #f03434; }
 
-.descriptionContainer {
+.details-descriptionContainer {
   width: 500px;
   overflow: hidden;
   height: 100px;
   margin-top: 0px; }
 
-.mainVideoDescription {
+.details-descriptionContainer__mainVideoDescription {
   font-family: "Cinzel", serif;
   color: rgba(255, 255, 255, 0.8);
   font-size: 16px;
@@ -97,10 +92,10 @@
   animation-name: slidein;
   cursor: pointer;
   transition: 500ms; }
-  .mainVideoDescription:hover {
+  .details-descriptionContainer__mainVideoDescription:hover {
     transition: 500ms;
     transform: scale(1.01); }
-  .mainVideoDescription::selection {
+  .details-descriptionContainer__mainVideoDescription::selection {
     color: rgba(255, 255, 255, 0.5); }
 
 @keyframes slidein {
@@ -111,10 +106,10 @@
     margin-left: 0%;
     width: 100%; } }
 @media only screen and (max-width: 925px) {
-  .mainVideoTitle {
+  .details-titleContainer__mainVideoTitle {
     font-size: 50px; }
 
-  .mainVideoDescription {
+  .details-descriptionContainer__mainVideoDescription {
     font-size: 14px; }
 
   .details {
@@ -126,7 +121,7 @@
   .muteUnmute {
     margin-bottom: 40px; }
 
-  .descriptionContainer {
+  .details-descriptionContainer {
     width: auto;
     word-break: break-all;
     height: auto; } }
@@ -134,13 +129,13 @@
   .details {
     margin-left: 10px; }
 
-  .mainVideoTitle {
+  .details-titleContainer__mainVideoTitle {
     font-size: 30px; } }
 @media only screen and (max-width: 375px) {
   .muteUnmute {
     margin-right: 10px; } }
 @media only screen and (max-width: 285px) {
-  .descriptionContainer {
+  .details-descriptionContainer {
     display: none; } }
 
 /*# sourceMappingURL=video.css.map */

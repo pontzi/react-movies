@@ -38,18 +38,14 @@
   opacity: 1;
   transition: 200ms;
 }
-.searchDetails {
-  position: absolute;
-  bottom: 0;
-}
-.searchPoster {
+.searchItem-searchPoster {
   width: 250px;
   height: 250px;
   border-radius: 20px;
   object-fit: cover;
   transition: 200m;
 }
-.searchDetails {
+.searchItem-searchDetails {
   color: white;
   background: linear-gradient(to top, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0));
   width: 250px;
@@ -60,33 +56,33 @@
   transition: 2000ms;
   border-radius: 20px;
 }
-.searchDetails p {
+.searchItem-searchDetails p {
   margin-bottom: 0px;
 }
-.searchDetails-title {
+.seartchItem-searchDetails__title {
   font-weight: bolder;
   font-size: 20px;
 }
-.searchDetails-title:hover {
+.seartchItem-searchDetails__title:hover {
   text-decoration: underline;
   transform: scale(1.02);
   transition: 200ms;
 }
-.searchItem:hover .searchDetails {
+.searchItem:hover .searchItem-searchDetails {
   opacity: 1;
   transition: 2000ms;
 }
-.searchDetails-description {
+.searchItem-searchDetails__description {
   color: white;
 }
-.searchDetails-description:hover {
+.searchItem-searchDetails__description:hover {
   text-decoration: underline;
   color: white;
 }
-.searchDetails-runtime:hover {
+.searchItem-searchDetails__runtime:hover {
   text-decoration: underline;
 }
-.searchItemHeart {
+.searchItem-heart {
   position: absolute;
   top: 0;
   right: 0;
@@ -95,7 +91,7 @@
   height: 40px;
   transition: 400ms;
 }
-.searchItemHeart:hover {
+.searchItem-heart:hover {
   transition: 400ms;
   transform: scale(1.3);
 }

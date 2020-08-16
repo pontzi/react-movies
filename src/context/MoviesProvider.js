@@ -92,26 +92,27 @@ const MoviesProvider = ({ children }) => {
     });
   };
   const setToMyList = (movieID, status) => {
-    if (status === undefined) {
-      setMyMoviesList({
-        ...myMoviesList,
-        [movieID]: movieID,
-      });
-      return;
-    }
-    if (status === null) {
-      setMyMoviesList({
-        ...myMoviesList,
-        [movieID]: movieID,
-      });
-      return;
-    }
-    if (status === true) {
-      setMyMoviesList({
-        ...myMoviesList,
-        [movieID]: undefined,
-      });
-      return;
+    switch (status) {
+      case undefined:
+        setMyMoviesList({
+          ...myMoviesList,
+          [movieID]: movieID,
+        });
+        break;
+      case null:
+        setMyMoviesList({
+          ...myMoviesList,
+          [movieID]: movieID,
+        });
+        break;
+      case true:
+        setMyMoviesList({
+          ...myMoviesList,
+          [movieID]: undefined,
+        });
+        break;
+      default:
+        break;
     }
   };
 
@@ -123,6 +124,7 @@ const MoviesProvider = ({ children }) => {
       dramaClassics,
       scienceFiction
     );
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
