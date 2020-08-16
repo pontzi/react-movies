@@ -35,59 +35,38 @@ const MoviesProvider = ({ children }) => {
   };
 
   const getData = async (popular, kids, old, drama, fiction) => {
-    const popularQuery = await fetch(`${baseUrl}${popular}&api_key=${apiKey}`);
-    const kidsQuery = await fetch(`${baseUrl}${kids}&api_key=${apiKey}`);
-    const oldQuery = await fetch(`${baseUrl}${old}&api_key=${apiKey}`);
-    const dramaQuery = await fetch(`${baseUrl}${drama}&api_key=${apiKey}`);
-    const fictionQuery = await fetch(`${baseUrl}${fiction}&api_key=${apiKey}`);
-
-    const popularJson = await popularQuery.json();
-    const kidsJson = await kidsQuery.json();
-    const oldJson = await oldQuery.json();
-    const dramaJson = await dramaQuery.json();
-    const fictionJson = await fictionQuery.json();
-
-    const popularResults = popularJson.results;
-    const kidsResults = kidsJson.results;
-    const oldResults = oldJson.results;
-    const dramaResults = dramaJson.results;
-    const fictionResults = fictionJson.results;
-
-    const promisePopularResults = popularResults.map((movie) =>
-      getFinalData(movie, apiKey)
+    const categoriesArr = [popular, kids, old, drama, fiction];
+    const categoriesArrPromise = categoriesArr.map((category) =>
+      fetch(`${baseUrl}${category}&api_key=${apiKey}`)
     );
-    const promiseKidsResults = kidsResults.map((movie) =>
-      getFinalData(movie, apiKey)
+    const categories = await Promise.all(categoriesArrPromise);
+    const promiseCategoriesJson = categories.map((category) => category.json());
+    const categoriesJson = await Promise.all(promiseCategoriesJson);
+    const categoriesResults = categoriesJson.map(
+      (category) => category.results
     );
-    const promiseOldResults = oldResults.map((movie) =>
-      getFinalData(movie, apiKey)
+    const promiseFinalCategoriesResults = categoriesResults.map(
+      (categoryResult) =>
+        categoryResult.map((movie) => getFinalData(movie, apiKey))
     );
-    const promiseDramaResults = dramaResults.map((movie) =>
-      getFinalData(movie, apiKey)
+    const finalCategoriesResults = await Promise.all(
+      promiseFinalCategoriesResults.map(
+        async (category) => await Promise.all(category)
+      )
     );
-    const promiseFictionResults = fictionResults.map((movie) =>
-      getFinalData(movie, apiKey)
-    );
-
-    const finalPopularResults = await Promise.all(promisePopularResults);
-    const finalKidsResults = await Promise.all(promiseKidsResults);
-    const finalOldResults = await Promise.all(promiseOldResults);
-    const finalDramaResults = await Promise.all(promiseDramaResults);
-    const finalFictionResults = await Promise.all(promiseFictionResults);
-
-    const allMovies = finalPopularResults.concat(
-      finalKidsResults,
-      finalOldResults,
-      finalDramaResults,
-      finalFictionResults
+    const allMovies = finalCategoriesResults[0].concat(
+      finalCategoriesResults[1],
+      finalCategoriesResults[2],
+      finalCategoriesResults[3],
+      finalCategoriesResults[4]
     );
 
     setMovies({
-      popular: finalPopularResults,
-      kids: finalKidsResults,
-      old: finalOldResults,
-      drama: finalDramaResults,
-      fiction: finalFictionResults,
+      popular: finalCategoriesResults[0],
+      kids: finalCategoriesResults[1],
+      old: finalCategoriesResults[2],
+      drama: finalCategoriesResults[3],
+      fiction: finalCategoriesResults[4],
       allMovies,
     });
   };

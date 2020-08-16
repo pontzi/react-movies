@@ -71,11 +71,9 @@ const MovieDescription = (props) => {
           <b>Release date:</b> <span>{release_date}</span>
         </p>
       </div>
-      <div
-        onClick={() => props.history.goBack()}
-        className="detailsMovieContainer-goBack"
-      >
+      <div className="detailsMovieContainer-goBack">
         <img
+          onClick={() => props.history.goBack()}
           className="detailsMovieContainer-goBack__icon"
           src={back}
           alt="Go back"
