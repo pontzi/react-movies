@@ -1,12 +1,8 @@
-.viewportHeight {
-  height: 100vh;
-}
-.notFoundContainer {
+.notFoundSearchContainer {
   display: flex;
   align-items: center;
   justify-content: center;
   height: 100vh;
-  margin-top: 70px;
 }
 .notFound {
   color: white;

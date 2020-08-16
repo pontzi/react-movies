@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import "./notFound.css";
 const NotFound = () => {
   return (
-    <div className="notFoundContainer container text-center">
+    <div className=" notFoundContainer container text-center">
       <Helmet>
         <title>Error 404 Not Found</title>
       </Helmet>

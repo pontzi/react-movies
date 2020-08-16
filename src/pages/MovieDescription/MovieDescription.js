@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet";
 import { motion } from "framer-motion";
 import { movieDescriptionPageVariants } from "../helpers/pageVariants";
@@ -9,6 +10,17 @@ const MovieDescription = (props) => {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
+
+  if (!props.location.state) {
+    return (
+      <div className="descriptionMovieContainer container">
+        <h2>No movies yet</h2>
+        <Link to="/">
+          <p>Back to home</p>
+        </Link>
+      </div>
+    );
+  }
   const {
     original_language,
     overview,

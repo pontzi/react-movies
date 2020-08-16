@@ -1,14 +1,16 @@
 import React from "react";
 import "./footer.css";
+import useVisibility from "./hooks/useVisibility";
 
 const Footer = () => {
+  const display = useVisibility();
   return (
-    <div className="ml-5 mr-5 mt-5 pb-4 pb-md-0 ">
-      <footer className="d-flex flex-wrap justify-content-between ">
-        <p className="mr-2">Developed by Ismael Ponce</p>
+    <div className={`fixed-bottom ${display} `}>
+      <footer className="footerContainer">
+        <p className="ml-5 mr-2">Developed by Ismael Ponce</p>
         <a href="https://github.com/pontzi">
           <img
-            className="githubIcon"
+            className="githubIcon ml-5 mr-5"
             src="https://image.flaticon.com/icons/svg/733/733609.svg"
             alt="Github"
           />

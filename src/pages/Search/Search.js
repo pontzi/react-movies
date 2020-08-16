@@ -10,9 +10,9 @@ const Search = (props) => {
 
   if (!moviesWithoutRepeating) {
     return (
-      <div className="notFoundContainer">
+      <div className="notFoundSearchContainer">
         <h2 className="notFound">
-          Movie not found{" "}
+          Movie not found
           <span role="img" aria-label="Emoji">
             😖
           </span>
@@ -23,7 +23,7 @@ const Search = (props) => {
 
   return (
     <div>
-      <div className={"searchResultsContainer container"}>
+      <div className="searchResultsContainer container">
         <h2 className="searchTitle ">Results</h2>
         <div className="align-items-center row">
           {moviesWithoutRepeating.map((movie) => (

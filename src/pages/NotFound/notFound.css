@@ -1,8 +1,13 @@
 .notFoundContainer {
   margin-top: 70px;
+  display: block;
+  height: 800px;
 }
 .imageContainer {
-  height: 100%;
+  height: auto;
+}
+.notFoundImg {
+  height: 500px;
 }
 
 @media only screen and (max-width: 768px) {
