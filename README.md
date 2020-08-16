@@ -6,6 +6,6 @@ Implemented with themoviedb API and React.js
 
 ![Movies page](./.readme-static/movies.png)
 
-[You can see the online page here!](https://pontzi-movies.pontzi.vercel.app/)
+[You can see the online page here!](https://pontzi-movies.pontzi.vercel.app)
 
 - `npm install` then `npm start` to run the development mode.
