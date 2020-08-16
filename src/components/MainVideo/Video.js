@@ -1,9 +1,9 @@
 import React, { useRef } from "react";
+import PageVisibility from "react-page-visibility";
 import video from "./joker.mp4";
 import unmute from "./unmute.png";
 import mute from "./mute.png";
 import useMuteUnmute from "./hooks/useMuteUnmute";
-import PageVisibility from "react-page-visibility";
 import "./video.css";
 
 const Video = () => {

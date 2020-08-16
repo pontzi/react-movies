@@ -1,8 +1,8 @@
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
-import useCarouselLogic from "./hooks/useCarouselLogic";
 import { MoviesContext } from "../../context/MoviesProvider";
 import Loader from "../Loader/Loader";
+import useCarouselLogic from "./hooks/useCarouselLogic";
 import "./carousel.css";
 
 const Carousel = (props) => {

@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import { Helmet } from "react-helmet";
 import { motion } from "framer-motion";
 import Carousel from "../../components/carousel/Carousel";
 import Video from "../../components/MainVideo/Video";
@@ -28,6 +29,10 @@ const Home = () => {
 
   return (
     <motion.div initial="out" animate="in" exit="out" variants={pageVariant}>
+      <Helmet>
+        <title>Movies</title>
+        <meta name="description" content="A page to watch the best movies" />
+      </Helmet>
       <Video />
       <Carousel
         categoryKey={popular}

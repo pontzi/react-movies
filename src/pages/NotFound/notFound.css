@@ -1,0 +1,22 @@
+.notFoundContainer {
+  margin-top: 70px;
+}
+.imageContainer {
+  height: 100%;
+}
+
+@media only screen and (max-width: 768px) {
+  .notFoundImg {
+    height: 400px;
+  }
+}
+@media only screen and (max-width: 425px) {
+  .notFoundImg {
+    height: 250px;
+  }
+}
+@media only screen and (max-width: 250px) {
+  .notFoundImg {
+    height: 150px;
+  }
+}

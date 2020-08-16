@@ -3,12 +3,13 @@ import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import useMoviesValidation from "./hooks/useMoviesValidation";
 import { pageVariant } from "../helpers/pageVariants";
+import { Helmet } from "react-helmet";
 import "./mylist.css";
 
 const MyList = () => {
   const { moviesWithoutRepeating, onHandleDelete } = useMoviesValidation();
 
-  if (moviesWithoutRepeating.length === 0) {
+  if (!moviesWithoutRepeating || moviesWithoutRepeating.length === 0) {
     return (
       <motion.div
         className="myListContainer viewportHeight container"
@@ -17,13 +18,28 @@ const MyList = () => {
         exit="out"
         variants={pageVariant}
       >
-        <h3 className="noMoviesTitle">Your list is empty</h3>
+        <Helmet>
+          <title>My list</title>
+          <meta
+            name="description"
+            content="Page to see all your favorites movies"
+          />
+        </Helmet>
+        <h3 className="noMoviesTitle">No movies yet</h3>
         <Link to="/">Go and add some movies to your list!</Link>
       </motion.div>
     );
   }
+
   return (
     <motion.div initial="out" animate="in" exit="out" variants={pageVariant}>
+      <Helmet>
+        <title>My list</title>
+        <meta
+          name="description"
+          content="Page to see all your favorites movies"
+        />
+      </Helmet>
       <div className={"myListContainer container"}>
         <h2 className="myListTitle mt-2">My list</h2>
 

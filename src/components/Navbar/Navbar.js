@@ -1,8 +1,8 @@
 import React from "react";
 import { Link, withRouter } from "react-router-dom";
+import useNavbarChanges from "./hooks/useNavbarChanges";
 import search from "./search.png";
 import logo from "./logo.png";
-import useNavbarChanges from "./hooks/useNavbarChanges";
 import "./navbar.css";
 
 const Navbar = (props) => {

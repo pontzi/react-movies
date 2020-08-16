@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import { Helmet } from "react-helmet";
 import { motion } from "framer-motion";
 import { movieDescriptionPageVariants } from "../helpers/pageVariants";
 import back from "./back.png";
@@ -28,6 +29,13 @@ const MovieDescription = (props) => {
       variants={movieDescriptionPageVariants}
       className="container descriptionMovieContainer"
     >
+      <Helmet>
+        <title>{title}</title>
+        <meta
+          name="description"
+          content="Page to know all information about your selected movie"
+        />
+      </Helmet>
       <div className="detailsMovieContainer">
         <h2 className="detailsMovieContainer-title mb-4">{title}</h2>
 
