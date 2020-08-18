@@ -1,8 +1,6 @@
 import React, { useRef } from "react";
 import PageVisibility from "react-page-visibility";
 import video from "./joker.mp4";
-import unmute from "./unmute.png";
-import mute from "./mute.png";
 import useMuteUnmute from "./hooks/useMuteUnmute";
 import "./video.css";
 
@@ -18,7 +16,14 @@ const Video = () => {
         </video>
 
         <div onClick={muteUnmute} className="muteUnmute">
-          <img src={!status.volume ? mute : unmute} alt="muteUnmute" />
+          <img
+            src={
+              !status.volume
+                ? "https://i.ibb.co/ZBggBTd/mute.png"
+                : "https://i.ibb.co/k6JLmFc/unmute.png"
+            }
+            alt="muteUnmute"
+          />
         </div>
 
         <div className="details">
